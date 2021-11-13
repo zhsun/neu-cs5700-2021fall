@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package snake;
+
+option java_package = "snake.app";
+option java_multiple_files = true;
+
+enum Direction {
+  UP = 0;
+  RIGHT = 1;
+  DOWN = 2;
+  LEFT = 3;
+}
+
+message ControlData {
+  enum Type {
+    CREATE_GAME = 0;
+    UPDATE_DIRECTION = 1;
+  }
+
+  Type type = 1;
+  int32 port = 2;
+  Direction direction = 3;
+}
+
+message Coordinate {
+  int32 row = 1;
+  int32 col = 2;
+}
+
+message GameUpdateData {
+  Coordinate apple = 1;
+  repeated Coordinate snake = 2;
+  bool game_over = 3;
+}
